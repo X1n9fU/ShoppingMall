@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .item-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .item-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: calc(33.33% - 20px);
+            height: 200px;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            margin-bottom: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: box-shadow 0.3s;
+            text-decoration: none;
+            color: #000000;
+        }
+
+        .item-box:hover {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .item-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: auto;
+            margin-bottom: 10px;
+        }
+
+        .item-image {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .item-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .item-price {
+            font-size: 14px;
+        }
+
+        /* New styles for center alignment */
+        .container {
+            text-align: center;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .heading {
+            margin-top: 0;
+        }
+
+        .button-container {
+            margin-bottom: 20px;
+        }
+
+        .add-button {
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3 class="heading">Shopping Mall List</h3>
+    <p>*품목을 누르면 상세보기가 가능합니다.</p>
+    <div class="button-container">
+        <button class="add-button" onclick="addItem()">품목 추가</button>
+    </div>
+
+    <div class="item-container">
+        <div th:each="item: ${itemList}" class="item-box">
+            <a th:href="@{|/mall/${item.id}|}" style="text-decoration: none; color: inherit;">
+                <div class="item-name" th:text="${item.itemName}"></div>
+                <div class="item-info">
+                    <div class="item-image" th:if="${item.fileAttached == 1}">
+                        <img th:src="@{|/upload/${item.storedFileName}|}" alt="">
+                    </div>
+                    <div class="item-price" th:text="${item.itemPrice} + '원'"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const addItem = () => {
+        location.href = "/mall/add";
+    }
+</script>
+</body>
+</html>

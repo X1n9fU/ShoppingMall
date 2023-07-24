@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>로그인</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,41 +40,41 @@
             background-color: #0056b3;
         }
 
-        .img-container {
-            text-align: center;
-            margin-bottom: 20px;
+        .form-container {
+            margin-top: 20px;
         }
 
-        .img-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
+        .form-container input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h3>Welcome to Shopping Mall</h3>
-    <div class="img-container">
-        <img src="/images/홈페이지.png" alt="홈페이지" />
+    <h3>회원가입</h3>
+    <div class="form-container">
+        <form th:action="@{/member/login}" method="post">
+            아이디: <input type="text" name="memberId">
+            비밀번호: <input type="password" name="memberPw">
+            <p th:if="${result != null}" th:text="${result}"></p>
+            <input type="submit" value="로그인">
+        </form>
     </div>
-    <button class="btn" onclick="showList()">품목 보기</button>
-
-    <button class="btn" onclick="memberLogin()">로그인</button>
-
-    <button class="btn" onclick="memberJoin()">회원 가입</button>
 </div>
-
-<script>
-    const showList = () => {
-        location.href = "/mall/list";
-    }
-    const memberLogin = () => {
-        location.href = "/member/login";
-    }
-    const memberJoin = () => {
-        location.href = "/member/join";
-    }
-</script>
 </body>
 </html>

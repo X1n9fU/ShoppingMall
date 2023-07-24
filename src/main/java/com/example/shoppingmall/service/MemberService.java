@@ -30,24 +30,6 @@ public class MemberService {
         }
     }
 
-//    public String login(MemberDTO memberDTO) {
-//        MemberEntity findMemberId = memberRepository.findByMemberId(memberDTO.getMemberId());
-//        if (findMemberId == null) {
-//            memberDTO.setLoginError(1);
-//            return "아이디를 찾을 수 없습니다.";
-//        }
-//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//        String createdPw = memberDTO.getMemberPw(); //작성된 비밀번호
-//        String realPw = findMemberId.getMemberPw(); //db에 저장된 비밀번호
-//
-//        if (!encoder.matches(createdPw, realPw)) {
-//            memberDTO.setLoginError(1);
-//            return "비밀번호가 일치하지 않습니다";
-//        }
-//
-//        return findMemberId.getMemberName();
-//    }
-
     public Optional<MemberEntity> findOne(String insertedUserId) {
         return Optional.ofNullable(memberRepository.findByMemberId(insertedUserId));
     }

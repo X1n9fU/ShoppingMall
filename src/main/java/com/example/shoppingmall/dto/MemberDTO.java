@@ -14,6 +14,4 @@ public class MemberDTO {
     private String memberPw;
     private String memberName;
     private String memberPhone;
-
-    private int loginError=0;
 }

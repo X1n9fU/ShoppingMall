@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>detail</title>
-    <style>
+  <meta charset="UTF-8">
+  <title>상세보기</title>
+  <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -95,55 +95,38 @@
 </head>
 <body>
 <div class="container">
-    <h3>상품 상세</h3>
+  <h3>상품 상세</h3>
 
-    <div class="item-info">
-        <div class="item-name" th:text="${item.itemName}"></div>
-        <div class="item-image" th:if="${item.fileAttached == 1}">
-            <img th:src="@{|/upload/${item.storedFileName}|}" alt="">
-        </div>
-        <div class="item-price" th:text="'￦ ' + ${item.itemPrice}"></div>
+  <div class="item-info">
+    <div class="item-name" th:text="${item.itemName}"></div>
+    <div class="item-image" th:if="${item.fileAttached == 1}">
+      <img th:src="@{|/upload/${item.storedFileName}|}" alt="">
     </div>
+    <div class="item-price" th:text="'￦ ' + ${item.itemPrice}"></div>
+  </div>
 
-    <div class="item-description" th:text="${item.itemDetail}"></div>
+  <div class="item-description" th:text="${item.itemDetail}"></div>
 
-    <div class="button-container">
-        <button onclick="updateReq()">수정</button>
-        <button onclick="deleteReq()">삭제</button>
-    </div>
+  <div class="button-container">
+    <button onclick="deleteCart()">삭제</button>
 
-    <div class="button-container">
-        <button onclick="cartAdd()">장바구니 추가</button>
-    </div>
+    <button onclick="cartReq()">장바구니 보기</button>
 
-    <div class="button-container">
-        <button onclick="listReq()">목록 보기</button>
-    </div>
-</div>
+  </div>
+
+  </div>
 
 <script th:inline="javascript">
-    const updateReq = () => {
-        console.log("수정 요청");
-        const id = [[${item.id}]];
-        //th:inline="javascript"가 꼭 있어야 가능
-        location.href = "/mall/update/" + id;
-    }
 
-    const deleteReq = () => {
+    const deleteCart = () => {
         console.log("삭제 요청");
         const id = [[${item.id}]];
-        location.href = "/mall/delete/" + id;
+        location.href = "/cart/delete/" + id;
     }
 
-    const listReq = () => {
+    const cartReq = () => {
         console.log("목록 보기 요청");
-        location.href = "/mall/list";
-    }
-
-    const cartAdd = () => {
-        console.log("장바구니 추가");
-        const id = [[${item.id}]];
-        location.href = "/cart/add/" + id;
+        location.href = "/cart";
     }
 
 </script>

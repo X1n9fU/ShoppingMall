@@ -19,7 +19,6 @@ public class ItemController {
 
     @GetMapping("/list")
     public String listForm(Model model){
-
         List<ItemDTO> itemDTOList = itemService.findAll();
         model.addAttribute("itemList", itemDTOList);
         return "list";

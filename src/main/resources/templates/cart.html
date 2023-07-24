@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>List</title>
+    <title>장바구니</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,7 +23,7 @@
             align-items: center;
             justify-content: center;
             width: calc(33.33% - 20px);
-            height: 200px;
+            height: 400px;
             background-color: #ffffff;
             border: 1px solid #dddddd;
             margin-bottom: 20px;
@@ -68,7 +68,11 @@
             font-size: 14px;
         }
 
-        /* New styles for center alignment */
+        .item-description {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         .container {
             text-align: center;
             max-width: 960px;
@@ -90,38 +94,50 @@
 </head>
 <body>
 <div class="container">
-    <h3 class="heading">Shopping Mall List</h3>
+    <h3 class="heading">Shopping Cart</h3>
+    <p th:text="${name} + '의 장바구니.'"></p>
     <p>*품목을 누르면 상세보기가 가능합니다.</p>
-    <div class="button-container">
-        <button class="add-button" onclick="addItem()">품목 추가</button>
-    </div>
-    <div class="button-container">
-        <button class="add-button" onclick="showCart()">장바구니</button>
-    </div>
 
-    <div class="item-container">
-        <div th:each="item: ${itemList}" class="item-box">
-            <a th:href="@{|/mall/${item.id}|}" style="text-decoration: none; color: inherit;">
+    <div class="item-container" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+        <div th:each="item: ${cartList}" class="item-box" style="flex: 0 0 auto; margin-right: 20px;">
+            <a th:href="@{|/cart/${item.id}|}" style="text-decoration: none; color: inherit;">
                 <div class="item-name" th:text="${item.itemName}"></div>
                 <div class="item-info">
                     <div class="item-image" th:if="${item.fileAttached == 1}">
                         <img th:src="@{|/upload/${item.storedFileName}|}" alt="">
                     </div>
                     <div class="item-price" th:text="${item.itemPrice} + '원'"></div>
+                    <div class="item-description" th:text="${item.itemDetail}"></div>
                 </div>
             </a>
+            <div class="button-container">
+                <button
+                        th:itemId="${item.id}"
+                        th:onclick="deleteCart(this.getAttribute('itemId'))">삭제</button>
+            </div>
         </div>
+    </div>
+    <p th:text="'총'+ ${price} + '원 입니다. 결제하려면 구매버튼을 눌러주세요.' "></p>
+    <div class="button-container">
+        <button class="add-button">구매</button>
+        <!--구매 버튼 구현 -->
+        <button onclick="listReq()">목록 보기</button>
     </div>
 </div>
 
-<script>
-    const addItem = () => {
-        location.href = "/mall/add";
+
+
+</body>
+<script th:inline="javascript">
+
+    const deleteCart = (id) => {
+        console.log("삭제 요청");
+        location.href = "/cart/delete/" + id;
     }
 
-    const showCart = () => {
-        location.href = "/cart";
+    const listReq = () => {
+        console.log("목록 보기 요청");
+        location.href = "/mall/list";
     }
 </script>
-</body>
 </html>

@@ -7,6 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -32,6 +35,9 @@ public class MemberEntity {
     //eunm 타입을 entity 속성으로 지정할 수 있음
     //enum 순서가 바뀌면 문제가 발생하므로 string으로 저장
     private Role role;
+
+    @OneToMany(mappedBy = "cartMember", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<CartEntity> cartEntityList = new ArrayList<>();
 
     public static MemberEntity toMemberEntity(MemberDTO memberDTO, PasswordEncoder passwordEncoder){
         MemberEntity memberEntity = new MemberEntity();

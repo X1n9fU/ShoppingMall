@@ -2,10 +2,10 @@ package com.example.shoppingmall.entity;
 
 import com.example.shoppingmall.dto.ItemDTO;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +27,9 @@ public class ItemEntity {
 
     @Column
     private int fileAttached; //1 or 0
+
+    @OneToMany(mappedBy = "cartItem", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<CartEntity> cartEntityList = new ArrayList<>();
 
     @OneToMany(mappedBy = "itemEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<ItemFileEntity> itemFileEntityList = new ArrayList<>();

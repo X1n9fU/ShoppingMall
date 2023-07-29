@@ -12,12 +12,6 @@ public class CartDTO {
     Long cartMember;
     Long cartItem;
 
-    public static CartDTO toCartDTO(Long cartMember, Long cartItem) {
-        CartDTO cartDTO = new CartDTO();
-        cartDTO.setCartMember(cartMember);
-        cartDTO.setCartItem(cartItem);
-        return cartDTO;
-    }
 }
 
 

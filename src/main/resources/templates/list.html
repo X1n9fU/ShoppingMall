@@ -68,7 +68,6 @@
             font-size: 14px;
         }
 
-        /* New styles for center alignment */
         .container {
             text-align: center;
             max-width: 960px;
@@ -89,6 +88,8 @@
     </style>
 </head>
 <body>
+<button onclick="Home()" style="cursor:pointer; border: none;">Home</button>
+<hr>
 <div class="container">
     <h3 class="heading">Shopping Mall List</h3>
     <p>*품목을 누르면 상세보기가 가능합니다.</p>
@@ -115,6 +116,10 @@
 </div>
 
 <script>
+    const Home = () => {
+        location.href = "/loginHome";
+    }
+
     const addItem = () => {
         location.href = "/mall/add";
     }

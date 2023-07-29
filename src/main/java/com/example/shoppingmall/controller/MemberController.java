@@ -32,16 +32,5 @@ public class MemberController {
     @GetMapping("/login")
     public String loginForm(){return "login";}
 
-//    @PostMapping("/login")
-//    public String login(@ModelAttribute MemberDTO memberDTO, Model model){
-//        String result = memberService.login(memberDTO);
-//        if (memberDTO.getLoginError() == 1) {
-//            model.addAttribute("result", result);
-//            return "redirect:/login";
-//        }else {
-//            model.addAttribute("name", result);
-//            return "redirect:/loginHome";
-//        }
-//    }
 
 }

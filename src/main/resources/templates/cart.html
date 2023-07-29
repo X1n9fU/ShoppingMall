@@ -93,6 +93,8 @@
     </style>
 </head>
 <body>
+<button onclick="Home()" style="cursor:pointer; border: none;">Home</button>
+<hr>
 <div class="container">
     <h3 class="heading">Shopping Cart</h3>
     <p th:text="${name} + '의 장바구니.'"></p>
@@ -129,6 +131,10 @@
 
 </body>
 <script th:inline="javascript">
+
+    const Home = () => {
+        location.href = "/loginHome";
+    }
 
     const deleteCart = (id) => {
         console.log("삭제 요청");

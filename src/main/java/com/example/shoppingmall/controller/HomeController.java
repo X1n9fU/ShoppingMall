@@ -26,10 +26,6 @@ public class HomeController {
         return "home";
     }
 
-//    @GetMapping("/loginHome")
-//    public String loginHome(){
-//        return "loginHome";
-//    }
     @GetMapping("/loginHome")
     public String loginHome(@AuthenticationPrincipal User user, Model model){
         //AuthenticationPrincipal 은 UserDetailsService 에서 Return 한 객체를 가져올 수 있다.

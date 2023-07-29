@@ -63,7 +63,7 @@
     </style>
 </head>
 <body>
-<form action="/mall/update" method="post" name="updateForm" enctype="multipart/form-data">
+<form th:action="@{/mall/update}" method="post" name="updateForm" enctype="multipart/form-data">
   <input type="hidden" name="id" th:value="${itemUpdate.id}">
 
   <label for="itemName">Item:</label>

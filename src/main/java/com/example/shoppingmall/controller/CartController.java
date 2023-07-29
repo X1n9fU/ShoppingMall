@@ -6,9 +6,7 @@ import com.example.shoppingmall.entity.MemberEntity;
 import com.example.shoppingmall.repository.MemberRepository;
 import com.example.shoppingmall.service.CartService;
 import com.example.shoppingmall.service.ItemService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -28,11 +26,11 @@ public class CartController {
     private final MemberRepository memberRepository;
     private final ItemService itemService;
 
-    public String listForm(Model model){
-        List<ItemDTO> itemDTOList = itemService.findAll();
-        model.addAttribute("itemList", itemDTOList);
-        return "list";
-    }
+//    public String listForm(Model model){
+//        List<ItemDTO> itemDTOList = itemService.findAll();
+//        model.addAttribute("itemList", itemDTOList);
+//        return "list";
+//    }
 
     @GetMapping("/add/{id}")
     public String addCart(@PathVariable Long id, Model model, @AuthenticationPrincipal User user) {

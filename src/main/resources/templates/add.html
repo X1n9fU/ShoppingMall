@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Add</title>
@@ -66,7 +66,7 @@
 <div class="container">
     <h3>상품 추가</h3>
 
-    <form action="/mall/add" method="post" enctype="multipart/form-data">
+    <form th:action="@{/mall/add}" method="post" enctype="multipart/form-data">
         <label for="itemName">Item(uncorrectable) :</label>
         <input type="text" name="itemName" id="itemName">
 
